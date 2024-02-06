@@ -1,7 +1,7 @@
 
 public class Main 
 {
-
+	@SuppressWarnings("unused")
 	public static void main(String[] args) 
 	{
 		// Instantiate StudentManager, perform operations based on the requirements.
@@ -15,7 +15,7 @@ public class Main
 		// Update the grade of a student by ID.
 		boolean studentGradeUpdateStatus = studentManager.updateStudentGradeById(102, 95);
 		// Display all students after the update.
-		studentManager.displayStudents()
+		studentManager.displayStudents();
 	}
 
 }

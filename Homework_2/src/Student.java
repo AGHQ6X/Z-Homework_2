@@ -4,6 +4,20 @@ public class Student
 	private int id;
 	private String name;
 	private double grade;
+	
+	public Student()
+	{
+		this.id = 0;
+		this.name = "";
+		this.grade = 0.0;
+	}
+	
+	public Student(int id, String name, double grade)
+	{
+		this.id = id;
+		this.name = name;
+		this.grade = grade;
+	}
 	 
 	public int getId() 
 	{
@@ -33,5 +47,16 @@ public class Student
 	public void setGrade(double grade)
 	{
 		this.grade = grade;
+	}
+	
+	public boolean equals(Student stu)
+	{
+		return this.id == stu.id;
+	}
+	
+	public String toString()
+	{
+		// TODO
+		return "";
 	}
 }
