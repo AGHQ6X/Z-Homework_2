@@ -51,7 +51,14 @@ public class Student
 	
 	public boolean equals(Student stu)
 	{
+		//Return true if the ids match
 		return this.id == stu.id;
+	}
+	
+	public boolean equals(int id)
+	{
+		//Return true if the ids match
+		return this.id == id;
 	}
 	
 	public String toString()

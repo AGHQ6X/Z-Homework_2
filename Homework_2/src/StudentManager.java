@@ -14,13 +14,50 @@ public class StudentManager
 		// while ((line = br.readLine()) != null) {System.out.println(line);
 	}
 
-	public boolean searchStudentById(int i)
+	private Student findStudentById(int id)
 	{
-		// TODO
-		return false;
+		//Check if student array even exists
+		if (this.students == null)
+		{
+			//If the array is empty, student doesn't exist
+			return null;
+		}
+		
+		//Loop through the array
+		for (Student s : students)
+		{
+			//If the id matches, return that student
+			if (s.equals(id))
+			{
+				return s;
+			}
+		}
+		
+		//Return null if no student id matches
+		return null;
+	}
+	
+	public boolean searchStudentById(int id)
+	{
+		//Return true if a non-null result is found
+		Student stu = findStudentById(id);
+		
+		//Check if student is found
+		if (stu != null)
+		{
+			//If student is found, print string then return true
+			System.out.println(stu.toString());
+			return true;
+		}
+		else
+		{
+			//If student is not found, print error and return false
+			System.out.println("Student not found.");
+			return false;
+		}
 	}
 
-	public boolean updateStudentGradeById(int i, int j)
+	public boolean updateStudentGradeById(int id, double grade)
 	{
 		// TODO
 		return false;
