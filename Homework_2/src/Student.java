@@ -56,7 +56,7 @@ public class Student
 	
 	public String toString()
 	{
-		// TODO
+		//return name + " " + id;
 		return "";
 	}
 }
