@@ -5,7 +5,20 @@ public class StudentManager
 
 	public boolean readFromFile(String string)
 	{
-		// TODO
+		boolean readFile = false;
+         try {
+            Scanner sc = new Scanner(System.in);
+            File inputFile = null;
+            while (inputFile == null){   
+                System.out.print("What is the filename? ");
+                String fileName = sc.next();
+
+                inputFile = new File(fileName);
+                if (!inputFile.exists()){
+                    inputFile = null;
+                    }
+               }
+            }
 		return false;
 	}
 
