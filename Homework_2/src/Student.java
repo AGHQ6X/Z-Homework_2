@@ -64,6 +64,6 @@ public class Student
 	public String toString()
 	{
 		//Return true if name and id is found
-		return id + " " + name + " " + grade;
+		return this.id + " " + this.name + " " + this.grade;
 	}
 }

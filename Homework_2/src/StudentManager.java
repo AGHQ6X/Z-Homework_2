@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+
 public class StudentManager 
 {
 	private Student[] students;
@@ -10,47 +11,58 @@ public class StudentManager
 		this.students = new Student[10];
 		this.numStus = 0;
 	}
-	
-	
 
-	public boolean readFromFile(String string)
+	public boolean readFromFile(String fileName)
 	{
-		boolean readFile = false;
-        Scanner sc = new Scanner(System.in); 
-        File inputFile = null;
-		try {
-            while (inputFile == null){   
-                System.out.print("What is the filename? ");
-                String fileName = sc.next();
-
-                inputFile = new File(fileName);
-                if (!inputFile.exists()){
-                    inputFile = null;
-                    }
-               }
-    		try (Scanner fileScanner = new Scanner(inputFile)){
-    			while (fileScanner.hasNext()) {
-    				int id = fileScanner.nextInt();
-    				String name = fileScanner.next() + " " +fileScanner.next();
-    				double grade = fileScanner.nextDouble();
-    				students[numStus++] = new Student(id, name, grade);
-    			}
-    		readFile = true;
-    		}
-            } catch (Exception a) {
-            	//catch goes here
-            	//TODO
-            }/*finally {
-         		if (sc != null) {
-         			sc.close();
-         		}
-         		
-         		
-         	}*/
-         	
+		//
+		File inputFile = new File(fileName);
+		
+		//Check if the file exists
+		if (!inputFile.exists())
+		{
+			//Print error
+			System.out.println("The file does not exist.");
 			
+			return false;
+		}
+		
+		//Create a fileScanner object
+		Scanner fileScanner;
+		
+		//File opening
+		try
+		{
+			//Initialize scanner
+			fileScanner = new Scanner(inputFile);
+		} 
+		catch (FileNotFoundException e)
+		{
+			//Print error
+			System.out.println("File not found: " + e.toString());
+			
+			return false;
+		}
+		
+		//Loop through lines
+		while (fileScanner.hasNext())
+		{
+			//Scan line
+			int id = fileScanner.nextInt();
+			String name = fileScanner.next() + " " + fileScanner.next();
+			double grade = fileScanner.nextDouble();
+			
+			//Create student object
+			students[numStus++] = new Student(id, name, grade);
+		}
+		
+		//Close scanner
+		if (fileScanner != null)
+		{
+			fileScanner.close();
+		}
          	
-		return false;
+		//If it got to here, everything had to be successful
+		return true;
 	}
 
 	public void displayStudents()
@@ -60,53 +72,34 @@ public class StudentManager
 		System.out.print("Student List: ");
 		for(int i = 0; i < numStus; i++) {
 			System.out.println(students[i].toString());
-			
 		}
-		
 	}
-
-
 	
 	public boolean searchStudentById(int id)
 	{
-		
-		Scanner sc = new Scanner(System.in);
-		System.out.print("Enter the Student's ID Which you would like to change");
-		int idToSearch = sc.nextInt();
-		
-		//Check if student is found
+		//Check if student array is null
 		if (this.students == null)
 		{
 			//If student is found, print string then return true
 			System.out.print("This file did not contain a list of students properly formatted.");
+			
 			return false;
 		}
 		
-		boolean studentFound = false;
-		
+		//Loop through student array
 		for (Student s : students) {
-			if(s.equals(idToSearch)) {
+			if (s != null && s.equals(id)) {
 				System.out.println(s.toString());
-				studentFound = true;
-				break;
+				return true;
 			}
 		}
-			//If student is not found, print error and return false
-			if(!studentFound) {
-				System.out.println("Student not found.");
-				return false;
-			}
-			return false;
 		
+		return false;
 	}
 	
 
 	public boolean updateStudentGradeById(int id, double grade)
 	{
-		Scanner sc = new Scanner(System.in);
-		System.out.print("Enter the ID of the student you would like to change the grade of please..");
-		int idUpd = sc.nextInt();
-		
 		if(this.students == null) {
 			System.out.print("Invalid...");
 			return false;
@@ -114,18 +107,14 @@ public class StudentManager
 		
 		boolean stuFound = false;
 		for(Student s : students) {
-			if(s.equals(idUpd)) {
-				System.out.print("Student Found:" + s.toString());
-				System.out.print("Enter the new grade (From 0 to 100, please).");
-				double newGrade = sc.nextDouble();
+			if(s != null && s.equals(id)) {
 				
-				if(newGrade > 0 && 100 > newGrade) {
-					s.setGrade(newGrade);
-					System.out.print("Grade was updated!");
-					
+				if(grade > 0 && 100 > grade) {
+					s.setGrade(grade);
+					System.out.println("Grade was updated!");
 				}
 				else {
-					System.out.print("Grade was not updated...");
+					System.out.println("Grade was not updated...");
 				}
 				stuFound = true;
 				break;
@@ -133,11 +122,11 @@ public class StudentManager
 			
 		}
 		
-		
 		if(!stuFound) {
-			System.out.print("Student was not found");
+			System.out.println("Student was not found");
+			return false;
 		}
 		
-		return false;
+		return true;
 	}
 }

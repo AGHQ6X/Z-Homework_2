@@ -17,5 +17,4 @@ public class Main
 		// Display all students after the update.
 		studentManager.displayStudents();
 	}
-
 }
