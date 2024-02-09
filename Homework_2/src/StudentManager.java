@@ -67,13 +67,16 @@ public class StudentManager
 
 	public void displayStudents()
 	{
-		//display all students in the list
-		
-		System.out.print("Student List: ");
-		for(int i = 0; i < numStus; i++) {
-			System.out.println(students[i].toString());
+		 StringBuilder output = new StringBuilder("Student List:\n");
+
+		    // Append each student's info to the output string
+		    for (int i = 0; i < numStus; i++) {
+		        output.append(students[i].toString()).append("\n");
+		    }
+
+		    // Print the entire output string
+		    System.out.print(output);
 		}
-	}
 	
 	public boolean searchStudentById(int id)
 	{
