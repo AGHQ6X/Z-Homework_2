@@ -63,7 +63,7 @@ public class Student
 	
 	public String toString()
 	{
-		//return name + " " + id;
-		return "";
+		//Return true if name and id is found
+		return name + " " + id;
 	}
 }
