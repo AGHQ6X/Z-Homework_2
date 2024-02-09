@@ -24,7 +24,7 @@ public class StudentManager
 
 	public void displayStudents()
 	{
-		// while ((line = br.readLine()) != null) {System.out.println(line);
+		System.out.print("\n" + "name" + "\n");
 	}
 
 	private Student findStudentById(int id)
